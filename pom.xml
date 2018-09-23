@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>me.djin</groupId>
-	<artifactId>springbootframe</artifactId>
+	<artifactId>dcore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springbootframe</name>
+	<name>dcore</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
