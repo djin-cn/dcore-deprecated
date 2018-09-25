@@ -12,20 +12,54 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.springboot>2.0.3.RELEASE</version.springboot>
 	</properties>
 
+	<!-- frame partial start -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.3.RELEASE</version>
 	</parent>
+	<!-- frame partial end -->
+
 	<dependencies>
+		<!-- librec start -->
+		<dependency>
+			<groupId>net.librec</groupId>
+			<artifactId>librec-core</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<!-- librec end -->
+
+		<!-- frame partial start -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- <version>${version.springboot}</version> -->
+		</dependency>
+		<!-- 热启动 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>2.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
 		<dependency>
@@ -33,39 +67,34 @@
 			<artifactId>mapper-spring-boot-starter</artifactId>
 			<version>2.0.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.5</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.2</version>
+			<version>42.2.4</version>
 		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.11</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.47</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>2.3.0</version>
-		</dependency>
+
+		<!-- frame partial end -->
 	</dependencies>
 	<build>
 		<plugins>
+			<!-- frame partial start -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- <configuration>
+				<configuration>
+					<classifier>exc</classifier>
 					<fork>true</fork>
-				</configuration> -->
+					<executable>true</executable>
+				</configuration>
 			</plugin>
+			<!-- frame partial end -->
 		</plugins>
 	</build>
 </project>
