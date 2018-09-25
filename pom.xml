@@ -88,11 +88,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<classifier>exc</classifier>
+				<!-- <configuration>
 					<fork>true</fork>
-					<executable>true</executable>
-				</configuration>
+				</configuration> -->
 			</plugin>
 			<!-- frame partial end -->
 		</plugins>
