@@ -78,7 +78,7 @@
 	<logger name="java.sql.PreparedStatement" level="DEBUG" />
 
 	<!-- 这就是上边logger没有管到的情况下 root默认接管所有logger -->
-	<root level="WARM">
+	<root level="ERROR">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="ROLLINGFILE" />
 	</root>

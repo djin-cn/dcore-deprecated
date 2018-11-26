@@ -1,18 +1,18 @@
-package me.djin.study;
+package me.djin.dcore;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * Hello world!
- *
+ * @author djin
  */
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan(basePackages = "me.djin.study.frame.dao")
+@MapperScan(basePackages = "me.djin.dcore.frame.dao")
 public class App 
 {
     public static void main( String[] args )
