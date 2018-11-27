@@ -32,9 +32,9 @@ public class KafkaSimpleProducer implements IProducer {
 	 */
 	@Override
 	public void send(String topic, String message) {
-		send(topic, message, new ListenableFutureCallback<SendResult<Integer, String>>() {
+		send(topic, message, new ListenableFutureCallback<Object>() {
 			@Override
-			public void onSuccess(SendResult<Integer, String> result) {
+			public void onSuccess(Object result) {
 				LOGGER.debug(String.format("topic:%s; message:%s; 发送成功!", topic, message));
 			}
 
@@ -49,7 +49,7 @@ public class KafkaSimpleProducer implements IProducer {
 	}
 
 	@Override
-	public void send(String topic, String message, ListenableFutureCallback<SendResult<Integer, String>> callback) {
+	public void send(String topic, String message, ListenableFutureCallback<Object> callback) {
 		ListenableFuture<SendResult<Integer, String>> future = kafkaTemplate.send(topic, message);
 		future.addCallback(callback);
 	}

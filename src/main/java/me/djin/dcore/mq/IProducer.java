@@ -3,7 +3,6 @@
  */
 package me.djin.dcore.mq;
 
-import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 /**
@@ -24,5 +23,5 @@ public interface IProducer {
 	 * @param message
 	 * @param callback
 	 */
-	void send(String topic, String message, ListenableFutureCallback<SendResult<Integer, String>> callback);
+	void send(String topic, String message, ListenableFutureCallback<Object> callback);
 }
