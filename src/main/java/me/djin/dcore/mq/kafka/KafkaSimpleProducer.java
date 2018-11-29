@@ -21,8 +21,8 @@ import me.djin.dcore.mq.IProducer;
  * @author djin Kafka消息生产者
  */
 @Component
-public class KafkaSimpleProducer implements IProducer {
-	private static final Logger LOGGER = LoggerFactory.getLogger(KafkaSimpleProducer.class);
+public class KafkaProducer implements IProducer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(KafkaProducer.class);
 	@Autowired
 	private KafkaTemplate<Integer, String> kafkaTemplate;
 
