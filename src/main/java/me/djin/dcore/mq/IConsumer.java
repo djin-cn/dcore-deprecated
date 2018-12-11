@@ -1,6 +1,3 @@
-/**
- * 
- */
 package me.djin.dcore.mq;
 
 /**
