@@ -60,7 +60,8 @@ public class IdUtil {
 			throw new RuntimeException("mac address is incorrect，ID is not generated correctly!", e);
 		}
 		long seed = 0;
-		for (int i = 0; i < 6; i++) {
+		int length = 6;
+		for (int i = 0; i < length; i++) {
 			seed <<= 8;
 			seed |= (mac[i] & 0xff);
 		}

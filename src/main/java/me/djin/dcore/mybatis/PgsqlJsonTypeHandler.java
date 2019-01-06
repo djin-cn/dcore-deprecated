@@ -19,7 +19,7 @@ import com.alibaba.fastjson.JSON;
  * @author djin
  *
  */
-@MappedTypes({Map.class,Collection.class})
+@MappedTypes({Map.class, Collection.class})
 public class PgsqlJsonTypeHandler extends BaseTypeHandler<Object> {
 	@Override
 	public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType)

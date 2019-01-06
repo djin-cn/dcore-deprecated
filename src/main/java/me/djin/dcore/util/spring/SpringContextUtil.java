@@ -1,8 +1,5 @@
 package me.djin.dcore.util.spring;
 
-import java.util.HashMap;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -19,7 +16,6 @@ public class SpringContextUtil implements ApplicationContextAware {
 	 * Spring应用上下文环境
 	 */
 	private static ApplicationContext applicationContext;
-	private static final HashMap<String,Object> BEANS_MAP = new HashMap<String,Object>();
 
 	/**
 	 * 实现ApplicationContextAware接口的回调方法，设置上下文环境
@@ -54,10 +50,7 @@ public class SpringContextUtil implements ApplicationContextAware {
 	 * @param clazz
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T getBean(Class<T> clazz) {
-		String name = clazz.getSimpleName();
-		name = StringUtils.uncapitalize(name);
-		return (T)getBean(name);
+		return applicationContext.getBean(clazz);
 	}
 }

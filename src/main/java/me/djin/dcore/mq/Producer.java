@@ -4,7 +4,7 @@ package me.djin.dcore.mq;
  * @author djin
  * 消息生产者
  */
-public interface IProducer {
+public interface Producer {
 	/**
 	 * 发送主题消息
 	 * @param topic 主题

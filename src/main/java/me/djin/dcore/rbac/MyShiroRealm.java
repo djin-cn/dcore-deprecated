@@ -11,7 +11,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import me.djin.dcore.core.FactoryContainer;
 
 /**
  * 
@@ -19,11 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 public class MyShiroRealm extends AuthorizingRealm {
-	@Autowired
-	private IAuthorize authorize;
-	@Autowired
-	private IAuthentication authentication;
-	
 	public MyShiroRealm() {
 		super(new MyCredentialsMatcher());
 	}
@@ -33,9 +29,9 @@ public class MyShiroRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		Authorize authorize = FactoryContainer.getBeanFactory(AuthorizeFactory.class).createInstance();
 		AuthenticationUser user = (AuthenticationUser) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-//		Collection<String> permissions = authorize.getPermissionsByUserid(user.getUserid());
 		Collection<String> permissions = authorize.getPermissionsByUserid(user);
 		authorizationInfo.addStringPermissions(permissions);
 		return authorizationInfo;
@@ -48,6 +44,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// 获取用户的输入的账号.
 		String username = (String) token.getPrincipal();
+		Authentication authentication = FactoryContainer.getBeanFactory(AuthenticationFactory.class).createInstance();
 
 		AuthenticationUser user = authentication.getUserByUsername(username);
 		if (user == null) {

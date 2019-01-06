@@ -28,7 +28,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import me.djin.dcore.exception.ApplicationException;
 import me.djin.dcore.mq.FutureCallback;
-import me.djin.dcore.mq.IConsumer;
+import me.djin.dcore.mq.Consumer;
 import me.djin.dcore.mq.Message;
 import me.djin.dcore.mq.Message.Status;
 import me.djin.dcore.util.PathUtil;
@@ -108,7 +108,7 @@ public class ThreadMessagePool {
 	}
 
 	/**
-	 * 获取初始化实例，第一次获取时自动装载为处理完成的消息
+	 * 获取初始化实例，第一次获取时自动装载未处理完成的消息
 	 * 
 	 * @return
 	 */
@@ -146,7 +146,7 @@ public class ThreadMessagePool {
 	 * @param consumer
 	 *            消息消费者
 	 */
-	public void submit(String topic, String message, FutureCallback callback, IConsumer consumer) {
+	public void submit(String topic, String message, FutureCallback callback, Consumer consumer) {
 		Message mes = new Message();
 		mes.setTopic(topic);
 		mes.setMessage(message);
@@ -255,8 +255,7 @@ public class ThreadMessagePool {
 		SCHEDULE_THREAD.scheduleAtFixedRate(() -> {
 			try {
 			List<Message> list = getMessageList();
-			System.out.println("定时处理线程消息，处理时间："+System.nanoTime()+"，消息总数：" + list.size());
-//			LOG.debug("定时处理线程消息，处理时间："+System.nanoTime()+"，消息总数：" + list.size());
+			LOG.debug("定时处理线程消息，处理时间："+System.nanoTime()+"，消息总数：" + list.size());
 			Iterator<Message> iterator = list.iterator();
 			while (iterator.hasNext()) {
 				Message message = iterator.next();

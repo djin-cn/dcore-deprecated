@@ -1,16 +1,18 @@
 package me.djin.dcore.mq.thread;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-
+import me.djin.dcore.core.FactoryContainer;
+import me.djin.dcore.mq.Consumer;
 import me.djin.dcore.mq.FutureCallback;
-import me.djin.dcore.mq.IConsumer;
-import me.djin.dcore.mq.IProducer;
 import me.djin.dcore.mq.Message;
-import me.djin.dcore.util.CommonFactory;
+import me.djin.dcore.mq.MqAbstractFactory;
+import me.djin.dcore.mq.Producer;
 
-@Component
-public class ThreadProducer implements IProducer {
+/**
+ * 线程消息生产者
+ * @author djin
+ *
+ */
+public class ThreadProducer implements Producer {
 	@Override
 	public void send(String topic, String message) {
 		send(topic, message, new FutureCallback() {
@@ -27,13 +29,13 @@ public class ThreadProducer implements IProducer {
 
 	@Override
 	public void send(String topic, String message, FutureCallback callback) {
-		String beanId = StringUtils.uncapitalize(topic + "Consumer");
-		IConsumer consumer = (IConsumer) CommonFactory.getBean(beanId);
-		if(consumer == null) {
-			throw new NullPointerException("undefined consumer for topic:"+topic);
+		MqAbstractFactory factory = FactoryContainer.getBeanFactory(MqAbstractFactory.class);
+		Consumer consumer = factory.createConsumer(topic);
+		if (consumer == null) {
+			throw new NullPointerException("undefined consumer for topic:" + topic);
 		}
-		if(callback == null) {
-			throw new NullPointerException("undefined callback for topic:"+topic);
+		if (callback == null) {
+			throw new NullPointerException("undefined callback for topic:" + topic);
 		}
 		ThreadMessagePool.getInstance().submit(topic, message, callback, consumer);
 	}

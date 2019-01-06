@@ -7,56 +7,52 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.stereotype.Service;
 
 /**
  * @author djin
  *
  */
-//@Service
-public class AuthorizeDemo implements IAuthorize {
+public class AuthorizeDemo implements Authorize, Authentication {
 
-	/* (non-Javadoc)
-	 * @see me.djin.study.rbac.IAuthorize#getUserByUsername(java.lang.String)
+	/**
+	 * @see me.djin.study.rbac.Authentication#getUserByUsername(java.lang.String)
 	 */
-	/*@Override
+	@Override
 	public AuthenticationUser getUserByUsername(String username) {
-		// TODO Auto-generated method stub
 		AuthenticationUser user = new AuthenticationUser();
-		user.setPassword("8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92");
-		user.setSalt("sdfgwr");
-		user.setUserid(1);
+		user.setPassword("875afc94bc041e7096b9ece017c5dff66867e463f8b1af4530289227fc1ab920071a8970a066887c33c095c1513666e9764fd5ebb62df28aa6674d87c80842f0");
+		user.setSalt("");
+		user.setUserid(1L);
+		user.setSystemRole(1);
 		user.setUsername("admin");
 		return user;
-	}*/
+	}
 
-	/* (non-Javadoc)
-	 * @see me.djin.study.rbac.IAuthorize#getPermissionsByUserId(java.lang.Object)
+	/**
+	 * @see me.djin.study.rbac.Authorize#getPermissionsByUserId(java.lang.Object)
 	 */
 	@Override
 	public Collection<String> getPermissionsByUserid(CurrentUser user) {
-		// TODO Auto-generated method stub
 		ArrayList<String> list = new ArrayList<>();
-		list.add(user.getSystemRole()+"_2");
+		list.add(user.getSystemRole()+"_1");
 		return list;
 	}
 
-	/* (non-Javadoc)
-	 * @see me.djin.study.rbac.IAuthorize#getPermissions()
+	/**
+	 * @see me.djin.study.rbac.Authorize#getPermissions()
 	 */
 	@Override
 	public Collection<Permission> getPermissions() {
-		// TODO Auto-generated method stub
 		ArrayList<Permission> list = new ArrayList<>();
 		
 		Permission permission1 = new Permission();
 		permission1.setCode("1_1");
-		permission1.setPath("/test/index");
+		permission1.setPath("/admin/**");
 		
 
 		Permission permission2 = new Permission();
 		permission2.setCode("1_2");
-		permission2.setPath("/test/*");
+		permission2.setPath("/test/**");
 		
 		list.add(permission1);
 		list.add(permission2);

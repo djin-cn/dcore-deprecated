@@ -55,7 +55,7 @@ public class Message {
 	 * 消息处理器
 	 */
 	@JSONField(ordinal = 5)
-	private IConsumer handler;
+	private Consumer handler;
 	/**
 	 * 
 	 */
@@ -94,11 +94,11 @@ public class Message {
 		this.latestTime = latestTime;
 	}
 
-	public IConsumer getHandler() {
+	public Consumer getHandler() {
 		return handler;
 	}
 
-	public void setHandler(IConsumer handler) {
+	public void setHandler(Consumer handler) {
 		this.handler = handler;
 	}
 

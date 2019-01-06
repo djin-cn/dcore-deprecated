@@ -46,7 +46,8 @@ public class IdcardUtil {
 	 *            身份证号码，如果是15位身份证将自动升为18位身份证
 	 */
 	public IdcardUtil(String idcard) {
-		if (idcard != null && idcard.length() == 15) {
+		int length = 15;
+		if (idcard != null && idcard.length() == length) {
 			this.idcard = this.convertTo18(idcard);
 		} else {
 			this.idcard = idcard;
@@ -59,14 +60,16 @@ public class IdcardUtil {
 	 * @return 返回NULL表示转换失败
 	 */
 	private String convertTo18(String idcard) {
+		int length = 15;
 		//不是15位身份证不能转成18位
-		if (idcard.length() != 15) {
+		if (idcard.length() != length) {
 			return null;
 		}
 		//1900年以前的老人均已过世，2000年以后的人身份证已升级为18位
 		String idcard17 = idcard.substring(0, 6) + "19" + idcard.substring(6);
+		String x = "x";
 		//身份证输入不合法
-		if(!validString(idcard17+"x")) {
+		if(!validString(idcard17 + x)) {
 			return null;
 		}
 		// 加权求和
@@ -108,7 +111,8 @@ public class IdcardUtil {
 	private String calculateVerifyCode(int sum) {
 		int mod = sum % 11;
 		int code = (12 - mod)%11;
-		if(code == 10) {
+		int ten = 10;
+		if(code == ten) {
 			return "X";
 		}
 		return String.valueOf(code);
@@ -149,7 +153,8 @@ public class IdcardUtil {
 		if (verifyFlag != null) {
 			return verifyFlag.booleanValue();
 		}
-		if (idcard == null || idcard.length() != 18) {
+		int length = 18;
+		if (idcard == null || idcard.length() != length) {
 			verifyFlag = false;
 			return verifyFlag;
 		}
@@ -202,7 +207,8 @@ public class IdcardUtil {
 		}
 		String id17 = idcard.substring(16, 17);
 		int gender = Integer.valueOf(id17);
-		if (gender % 2 == 0) {
+		int mod = 2;
+		if (gender % mod == 0) {
 			return 2;
 		} else {
 			return 1;

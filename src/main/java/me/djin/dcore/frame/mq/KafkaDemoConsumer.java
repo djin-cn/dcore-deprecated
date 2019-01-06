@@ -1,9 +1,9 @@
-package me.djin.dcore.mq.kafka;
+package me.djin.dcore.frame.mq;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import me.djin.dcore.mq.IConsumer;
+import me.djin.dcore.mq.Consumer;
 
 /**
  * 演示kafka消费者
@@ -12,7 +12,7 @@ import me.djin.dcore.mq.IConsumer;
  *
  */
 @Component
-public class KafkaDemoConsumer implements IConsumer {
+public class KafkaDemoConsumer implements Consumer {
 
 	@KafkaListener(topics = { "demo" })
 	@Override
