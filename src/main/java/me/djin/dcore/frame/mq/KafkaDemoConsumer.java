@@ -14,7 +14,11 @@ import me.djin.dcore.mq.Consumer;
 @Component
 public class KafkaDemoConsumer implements Consumer {
 
-	@KafkaListener(topics = { "demo" })
+	/**
+	 * KafkaListener不会自动启动，实际使用过程中一般不会设autoStartup=false;
+	 * @param message
+	 */
+	@KafkaListener(topics = { "demo" }, autoStartup="false")
 	@Override
 	public void process(String message) {
 		System.out.println(message);
