@@ -255,7 +255,7 @@ public class ThreadMessagePool {
 		SCHEDULE_THREAD.scheduleAtFixedRate(() -> {
 			try {
 			List<Message> list = getMessageList();
-			LOG.debug("定时处理线程消息，处理时间："+System.nanoTime()+"，消息总数：" + list.size());
+			LOG.trace("定时处理线程消息，处理时间："+System.nanoTime()+"，消息总数：" + list.size());
 			Iterator<Message> iterator = list.iterator();
 			while (iterator.hasNext()) {
 				Message message = iterator.next();
