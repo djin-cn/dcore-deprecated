@@ -136,11 +136,4 @@ public class TokenModel {
 		TokenModel model = JSON.parseObject(text, TokenModel.class);
 		return model;
 	}
-	
-	public static void main(String[] args) throws InvalidKeyException, FileNotFoundException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
-		String token = "S1lMMBZyAwCvrw3S+7RUQ+WaLWEtcH+DhjlbAfNXEMKsNp0YtIw3XODX/kGqJy+qTfxE/7LscGWLizaJH1ER08jX/e4fXn8ggi+zICw/dQsypTbvuMfWz8c28cRP/lAR+zAyuiyUm60jskex/tWfw9Xh9fsONcNbMQnP0JnOAuY=";
-		byte[] bytes = RsaUtils.decrypt(PUBLIC_FILE, Base64.decodeBase64(token));
-		String result = new String(bytes);
-		System.out.println(result);
-	}
 }

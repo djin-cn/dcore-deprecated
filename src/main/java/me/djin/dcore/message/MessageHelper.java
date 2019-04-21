@@ -86,9 +86,4 @@ public class MessageHelper {
 		}
 		return MessageFormat.format(messageUtf8, params);
 	}
-	
-	public static void main(String[] args) {
-		String message = MessageHelper.getMessage("10000");
-		System.out.println(message);
-	}
 }

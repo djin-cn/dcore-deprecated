@@ -117,32 +117,4 @@ public class MailHelper {
 		}
 		return true;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("start...");
-		SmtpModel smtp = new SmtpModel();
-		smtp.setHost("smtp.163.com");
-		smtp.setUsername("xxxxxx@163.com");
-		smtp.setPassword("xxxxxx");
-		smtp.setPort(25);
-		smtp.setAuth(true);
-		smtp.setTlsEnable(true);
-		smtp.setTlsRequired(true);
-		MailHelper helper = new MailHelper(smtp);
-		
-		MailMessage message = new MailMessage();
-		message.setFrom("xxxxxx@163.com");
-		message.getTo().add("xxxxxx@qq.com");
-		message.getTo().add("xxxxxx@gmail.com");
-		message.setSubject("测试邮件");
-		message.setContent("<p>h5邮件<br/><img src=\"cid:t1\"/></p>");
-		message.getResources().put("t1", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Hydrangeas.jpg");
-		message.getAttachment().add("C:\\Users\\Public\\Pictures\\Sample Pictures\\Desert.jpg");
-		boolean flag = helper.send(message);
-		if(flag) {
-			System.out.println("success");
-		}else {
-			System.out.println("fail");
-		}
-	}
 }
