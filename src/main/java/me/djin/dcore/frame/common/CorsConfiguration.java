@@ -3,15 +3,15 @@
  */
 package me.djin.dcore.frame.common;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author djin 跨域访问设置
  */
-@Configurable
+@Component
 public class CorsConfiguration {
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {

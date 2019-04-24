@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.google.common.base.Predicate;
 
-import me.djin.dcore.rbac.StatelessDefaultSubjectFactory;
+import me.djin.dcore.frame.model.CurrentUser;
 import me.djin.dcore.swagger.SwaggerDocket;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiKey;
@@ -45,7 +45,7 @@ public class SwaggerConfig {
     }
     
     private List<ApiKey> securitySchemes(){
-    	return Arrays.asList(new ApiKey(StatelessDefaultSubjectFactory.TOKEN_HEADER, StatelessDefaultSubjectFactory.TOKEN_HEADER, "header"));
+    	return Arrays.asList(new ApiKey(CurrentUser.TOKEN_HEADER, CurrentUser.TOKEN_HEADER, "header"));
     }
     
     private List<SecurityContext> securityContexts(){
@@ -59,6 +59,6 @@ public class SwaggerConfig {
     	AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference(StatelessDefaultSubjectFactory.TOKEN_HEADER, authorizationScopes));
+        return Arrays.asList(new SecurityReference(CurrentUser.TOKEN_HEADER, authorizationScopes));
     }
 }

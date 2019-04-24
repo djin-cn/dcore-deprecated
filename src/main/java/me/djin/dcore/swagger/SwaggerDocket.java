@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.swagger.annotations.Api;
-import me.djin.dcore.rbac.StatelessDefaultSubjectFactory;
+import me.djin.dcore.frame.model.CurrentUser;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -38,7 +38,7 @@ public class SwaggerDocket {
 	private List<Parameter> globalParameter(){
 		List<Parameter> list = new ArrayList<>();
 		ParameterBuilder builder = new ParameterBuilder();
-		Parameter param = builder.name(StatelessDefaultSubjectFactory.TOKEN_HEADER).description("用户令牌")
+		Parameter param = builder.name(CurrentUser.TOKEN_HEADER).description("用户令牌")
 		.modelRef(new ModelRef("String")).parameterType("header")
 		.required(false).build();
 		list.add(param);
