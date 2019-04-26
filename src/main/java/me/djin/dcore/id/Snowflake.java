@@ -74,6 +74,7 @@ public class Snowflake implements IdGenerator {
 		if(ip.length != 4) {
 			throw new RuntimeException("IdGenerator can not support this ip:"+addr.getHostAddress());
 		}
+		System.out.println(addr.getHostAddress());
 		
 		machineCode = ((ip[2]&0xff)<<8) | (ip[3]&0xff);
 		return machineCode;
