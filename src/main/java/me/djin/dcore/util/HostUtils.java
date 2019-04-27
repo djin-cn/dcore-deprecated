@@ -58,6 +58,7 @@ public class HostUtils {
 				}
 				
 				System.out.println(String.format("SiteIP:%s; IsLinkLocal:%s; isAnyLocal:%s; isMCGlobal:%s; isMCLinkLocal:%s; isMCNodeLocal:%s; isMCOrgLocal:%s; isMCSiteLocal:%s; isMulticast:%s;"
+						, inetAddress.getHostAddress()
 						, inetAddress.isLinkLocalAddress()
 						, inetAddress.isAnyLocalAddress()
 						, inetAddress.isMCGlobal()
