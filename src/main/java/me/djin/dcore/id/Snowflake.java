@@ -4,7 +4,6 @@
 package me.djin.dcore.id;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import me.djin.dcore.util.HostUtils;
 
