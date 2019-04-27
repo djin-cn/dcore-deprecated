@@ -5,6 +5,9 @@ package me.djin.dcore.id;
 
 import java.net.InetAddress;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import me.djin.dcore.util.HostUtils;
 
 /**
@@ -27,6 +30,7 @@ import me.djin.dcore.util.HostUtils;
  * 15位序号码，可生成2^15=32768个ID，1秒钟3万ID基本够用；<br/>
  */
 public class Snowflake implements IdGenerator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Snowflake.class);
 	/**
 	 * 最小时间戳2018-01-01 00:00:00
 	 */
@@ -75,7 +79,7 @@ public class Snowflake implements IdGenerator {
 		if(ip.length != 4) {
 			throw new RuntimeException("IdGenerator can not support this ip:"+addr.getHostAddress());
 		}
-		System.out.println("IP:"+addr.getHostAddress());
+		LOGGER.info("IdGenerator's IP is: " + addr.getHostAddress());
 		
 		machineCode = ((ip[2]&0xff)<<8) | (ip[3]&0xff);
 		return machineCode;
