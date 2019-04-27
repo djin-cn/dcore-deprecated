@@ -10,8 +10,7 @@ import java.net.UnknownHostException;
 import java.util.Enumeration;
 
 /**
- * @author djin
- * 主机工具类，获取主机信息
+ * @author djin 主机工具类，获取主机信息
  */
 public class HostUtils {
 	/**
@@ -54,7 +53,20 @@ public class HostUtils {
 					System.out.println("NotSiteLocal:"+inetAddress.getHostAddress());
 					continue;
 				}
-				System.out.println("SiteIP:"+inetAddress.getHostAddress());
+				if(inetAddress.isLinkLocalAddress()) {
+					System.out.println("SiteIP:"+inetAddress.getHostAddress());
+				}
+				
+				System.out.println(String.format("SiteIP:%s; IsLinkLocal:%s; isAnyLocal:%s; isMCGlobal:%s; isMCLinkLocal:%s; isMCNodeLocal:%s; isMCOrgLocal:%s; isMCSiteLocal:%s; isMulticast:%s;"
+						, inetAddress.isLinkLocalAddress()
+						, inetAddress.isAnyLocalAddress()
+						, inetAddress.isMCGlobal()
+						, inetAddress.isMCLinkLocal()
+						, inetAddress.isMCNodeLocal()
+						, inetAddress.isMCOrgLocal()
+						, inetAddress.isMCSiteLocal()
+						, inetAddress.isMulticastAddress()
+						));
 				addr = inetAddress;
 //				break;
 			}
