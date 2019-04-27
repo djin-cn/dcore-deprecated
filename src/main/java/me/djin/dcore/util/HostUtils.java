@@ -68,7 +68,6 @@ public class HostUtils {
 				
 				//loopback类型的地址，一般为本机地址127.0.0.1
 				if(inetAddress.isLoopbackAddress()) {
-					System.out.println("Loopback IP:"+inetAddress.getHostAddress());
 					continue;
 				}
 				//非siteLocal类型地址，
