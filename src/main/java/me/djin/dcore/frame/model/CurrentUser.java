@@ -13,7 +13,7 @@ import com.alibaba.fastjson.JSONObject;
  * 当前登录用户
  */
 public class CurrentUser {
-	public static final String TOKEN_HEADER = "TOKEN";
+	public static final String TOKEN_HEADER = "Authorization";
 	private Long userid;
 	private String username;
 	private String name;
