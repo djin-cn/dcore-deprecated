@@ -6,6 +6,8 @@ package me.djin.dcore.id;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import me.djin.dcore.util.HostUtils;
+
 /**
  * @author djin
  * Snowflake算法，原算法理论:<br/>
@@ -66,8 +68,8 @@ public class Snowflake implements IdGenerator {
 		}
 		InetAddress addr = null;
 		try {
-			addr = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {
+			addr = HostUtils.getLanInetAddress();
+		} catch (RuntimeException e) {
 			throw new RuntimeException("IdGenerator can not get ip", e);
 		}
 		byte[] ip = addr.getAddress();
