@@ -46,17 +46,20 @@ public class HostUtils {
 				InetAddress inetAddress = addressList.nextElement();
 				//loopback类型的地址，一般为本机地址127.0.0.1
 				if(inetAddress.isLoopbackAddress()) {
+					System.out.println("Loopback IP:"+inetAddress.getHostAddress());
 					continue;
 				}
 				//非siteLocal类型地址，
 				if(!inetAddress.isSiteLocalAddress()) {
+					System.out.println("NotSiteLocal:"+inetAddress.getHostAddress());
 					continue;
 				}
+				System.out.println("SiteIP:"+inetAddress.getHostAddress());
 				addr = inetAddress;
-				break;
+//				break;
 			}
 			if(addr != null) {
-				break;
+//				break;
 			}
 		}
 		if(addr != null) {
