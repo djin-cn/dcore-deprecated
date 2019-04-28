@@ -19,7 +19,7 @@ public class IdcardValidator implements ConstraintValidator<Idcard, String> {
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		if(value == null) {
+		if(value == null || "".equals(value)) {
 			return true;
 		}
 		IdcardUtil idcard = new IdcardUtil(value);
