@@ -10,7 +10,7 @@
 
         <!--生成service类-->
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-        	<property name="baseMapper" value="me.djin.dcore.frame.common.ICurdService"/>
+        	<property name="baseMapper" value="me.djin.dcore.frame.common.CurdService"/>
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="test.service"/>
             <property name="templatePath" value="generator/service.ftl"/>
@@ -19,7 +19,7 @@
         </plugin>
         <!--生成mapper接口-->
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-        	<property name="baseMapper" value="me.djin.dcore.frame.common.ICurdDao"/>
+        	<property name="baseMapper" value="me.djin.dcore.frame.common.CurdBaseDao"/>
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="test.dao"/>
             <property name="templatePath" value="generator/dao.ftl"/>
