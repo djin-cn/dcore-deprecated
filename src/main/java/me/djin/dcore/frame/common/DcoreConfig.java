@@ -10,39 +10,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class DcoreConfig {
-	private String permissionsApi;
-	private String rsaApi;
 	@Value("${dcore.mq:thread}")
 	private String mq;
-	
-	/**
-	 * 权限列表API，获取所有权限。
-	 * @return
-	 */
-	public String getPermissionsApi() {
-		return permissionsApi;
-	}
-	/**
-	 * 权限列表API，获取所有权限。
-	 * @param permissionsApi
-	 */
-	public void setPermissionsApi(String permissionsApi) {
-		this.permissionsApi = permissionsApi;
-	}
-	/**
-	 * 公钥API，获取公钥
-	 * @return
-	 */
-	public String getRsaApi() {
-		return rsaApi;
-	}
-	/**
-	 * 公钥API，获取公钥
-	 * @param rsaApi
-	 */
-	public void setRsaApi(String rsaApi) {
-		this.rsaApi = rsaApi;
-	}
 
 	/**
 	 * MQ厂商，默认thread
