@@ -1,6 +1,5 @@
 package me.djin.dcore.frame.model;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,11 +55,8 @@ public class PageModel<T> {
 	 * 将T的分页对象转换为M的分页对象，一般用于转换为M对象
 	 * @param clazz
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
 	 */
-	public <M> PageModel<M> convert(Class<M> clazz) throws InstantiationException, IllegalAccessException{
+	public <M> PageModel<M> convert(Class<M> clazz) {
 		PageModel<M> page = new PageModel<M>();
 		page.setTotal(this.total);
 		
