@@ -10,8 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author djin
  *
  */
-@SuppressWarnings("serial")
-public class IdModel extends BaseObject {
+public class IdModel {
 	@ApiModelProperty(value="ID", required=true)
 	@NotNull
 	@Pattern(regexp="^\\d+$")

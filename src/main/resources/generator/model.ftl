@@ -1,5 +1,7 @@
 package ${package};
 import lombok.Data;
+import javax.persistence.OrderBy;
+import me.djin.dcore.frame.common.DcoreConstant;
 
 /**
  * @author:djin
@@ -18,6 +20,7 @@ public class ${tableClass.shortClassName}${mapperSuffix} {
      * ${field.remarks}
      */
     @javax.persistence.Id
+    @OrderBy(DcoreConstant.ORDER_DESC)
     private ${types} ${field.fieldName};
 </#list>
 </#if>

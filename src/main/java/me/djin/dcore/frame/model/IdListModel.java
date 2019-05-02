@@ -14,8 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author djin
  *
  */
-@SuppressWarnings("serial")
-public class IdListModel extends BaseObject {
+public class IdListModel {
 	@ApiModelProperty(value="ID", required=true)
 	@NotNull
 	private List<@Pattern(regexp="^\\d+$") @NotBlank String> id;

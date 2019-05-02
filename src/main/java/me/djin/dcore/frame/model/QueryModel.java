@@ -11,8 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author djin
  *
  */
-@SuppressWarnings("serial")
-public class QueryModel extends BaseObject {
+public class QueryModel {
 	@ApiModelProperty(value="排序属性，默认按id排序")
 	@Pattern(regexp="^[\\w\\.]+$", message="字符只能为字母或者下划线")
 	private String order;

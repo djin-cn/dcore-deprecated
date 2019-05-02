@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @author djin
  *
  */
-@SuppressWarnings("serial")
 public class KeywordQueryModel extends QueryModel {
 	@ApiModelProperty(value="关键词")
 	private String kw;
