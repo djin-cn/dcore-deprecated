@@ -105,8 +105,8 @@ public class RequestParams {
 			} catch (Exception e) {
 				user = new CurrentUser();
 			}
+			request.setAttribute(CurrentUser.TOKEN_HEADER, user);
 		}
-		request.setAttribute(CurrentUser.TOKEN_HEADER, user);
 		return user;
 	}
 	
