@@ -28,10 +28,8 @@ public class BeanUtils {
 	 * @param orig
 	 * @param dest
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
 	 */
-	public static <T> T copy(Object orig, Class<T> dest) throws InstantiationException, IllegalAccessException {
+	public static <T> T copy(Object orig, Class<T> dest){
 		return copy(orig, dest, (value, target, context) -> {
 			//如果value值为NULL，直接返回
 			if(value == null) {
@@ -92,10 +90,8 @@ public class BeanUtils {
 	 * @param dest
 	 * @param callback
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
 	 */
-	public static <T> T copy(Object orig, Class<T> dest, BeanCopyCallback<T> callback) throws InstantiationException, IllegalAccessException {
+	public static <T> T copy(Object orig, Class<T> dest, BeanCopyCallback<T> callback){
 		T t  = copy(orig, dest);
 		t = callback.call(orig, t);
 		return t;
@@ -123,17 +119,19 @@ public class BeanUtils {
 	 * @param converter
 	 *            转换器，用于将orig对象复制到dest对象;
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
 	 */
-	public static <T> T copy(Object orig, Class<T> dest, Converter converter)
-			throws InstantiationException, IllegalAccessException {
+	public static <T> T copy(Object orig, Class<T> dest, Converter converter) {
 		if(orig == null) {
 			return null;
 		}
 		boolean useConverter = converter != null;
 		BeanCopier copier = BeanCopier.create(orig.getClass(), dest, useConverter);
-		T to = dest.newInstance();
+		T to = null;
+		try {
+			to = dest.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			throw new RuntimeException("Bean转换失败", e);
+		}
 		copier.copy(orig, to, converter);
 		return to;
 	}
@@ -145,10 +143,8 @@ public class BeanUtils {
 	 * @param dest
 	 * @see BeanUtils.copy(Object orig, Class<T> dest)
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
 	 */
-	public static <T> List<T> copyList(Collection<? extends Object> list, Class<T> dest) throws InstantiationException, IllegalAccessException {
+	public static <T> List<T> copyList(Collection<? extends Object> list, Class<T> dest) {
 		if(list == null || list.isEmpty()) {
 			return null;
 		}
@@ -166,10 +162,8 @@ public class BeanUtils {
 	 * @param dest
 	 * @param callback
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
 	 */
-	public static <T> List<T> copyList(Collection<? extends Object> list, Class<T> dest, BeanCopyCallback<T> callback) throws InstantiationException, IllegalAccessException {
+	public static <T> List<T> copyList(Collection<? extends Object> list, Class<T> dest, BeanCopyCallback<T> callback) {
 		if(list == null || list.isEmpty()) {
 			return null;
 		}
@@ -188,10 +182,8 @@ public class BeanUtils {
 	 * @param converter
 	 * @see BeanUtils.copy(Object orig, Class<T> dest, Converter converter)
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
 	 */
-	public static <T> List<T> copyList(Collection<? extends Object> list, Class<T> dest, Converter converter) throws InstantiationException, IllegalAccessException {
+	public static <T> List<T> copyList(Collection<? extends Object> list, Class<T> dest, Converter converter) {
 		if(list == null || list.isEmpty()) {
 			return null;
 		}
