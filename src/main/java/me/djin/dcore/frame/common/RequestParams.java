@@ -28,7 +28,7 @@ public class RequestParams {
 	 * 
 	 * @return
 	 */
-	private static HttpServletRequest currentRequest() {
+	private static final HttpServletRequest currentRequest() {
 		String exceptionMessage = "RequestParams使用错误，RequestParams只能获取web请求参数，不能用于其它时间和场景(如：多线程、定时任务等)";
 		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		if (attrs == null) {
@@ -48,7 +48,7 @@ public class RequestParams {
 	 * 
 	 * @return
 	 */
-	public static int getPageNumber() {
+	public static final int getPageNumber() {
 		String strPn = currentRequest().getParameter("pn");
 		int pn = 0;
 		try {
@@ -69,7 +69,7 @@ public class RequestParams {
 	 * 
 	 * @return
 	 */
-	public static int getPageCount() {
+	public static final int getPageCount() {
 		String strPc = currentRequest().getParameter("pc");
 		int pc = 0;
 		try {
@@ -108,5 +108,31 @@ public class RequestParams {
 		}
 		request.setAttribute(CurrentUser.TOKEN_HEADER, user);
 		return user;
+	}
+	
+	/**
+	 * 获取客户端IP,可以获取代理后的IP
+	 * 
+	 * 一般nginx配置习惯,代理链放到X-Forwarded-For
+	 * 
+	 * 所以此方法优先获取X-Forwarded-For，然后获取request.getRemoteAddr();
+	 * 
+	 * 本方法不会从X-Real-IP获取IP地址，虽然可能有效
+	 */
+	public static final String getRemoteAddr() {
+		String unknown = "unknown";
+		HttpServletRequest request = currentRequest();
+		String ip = request.getHeader("X-Forwarded-For");
+		if(StringUtils.isNotBlank(ip) && !unknown.equalsIgnoreCase(ip)) {
+			String[] ips = ip.split(",");
+			for (String tmp : ips) {
+				if(unknown.equalsIgnoreCase(tmp)) {
+					continue;
+				}
+				ip = tmp;
+				return ip;
+			}
+		}
+		return request.getRemoteAddr();
 	}
 }
