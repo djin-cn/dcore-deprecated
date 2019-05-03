@@ -263,7 +263,7 @@ public interface CurdService<T> {
 		List<T> list = dao.selectAll();
 		int count = dao.selectCount(null);
 		if (list == null || list.isEmpty()) {
-			return null;
+			return new PageModel<>();
 		}
 		PageModel<T> pageModel = new PageModel<T>();
 		pageModel.setList(list);
@@ -284,14 +284,14 @@ public interface CurdService<T> {
 	 */
 	default PageModel<T> list(T t, int pageNumber, int pageSize) {
 		if (t == null) {
-			return null;
+			return new PageModel<>();
 		}
 		CurdBaseDao<T> dao = ServiceHelper.getInstance(t);
 		PageHelper.startPage(pageNumber, pageSize);
 		List<T> list = dao.select(t);
 		int count = dao.selectCount(t);
 		if (list == null || list.isEmpty()) {
-			return null;
+			return new PageModel<>();
 		}
 		PageModel<T> pageModel = new PageModel<T>();
 		pageModel.setList(list);
