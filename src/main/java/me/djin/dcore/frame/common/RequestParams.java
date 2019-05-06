@@ -93,7 +93,7 @@ public class RequestParams {
 	public static final CurrentUser getCurrentUser() {
 		HttpServletRequest request = currentRequest();
 		CurrentUser user = (CurrentUser) request.getAttribute(CurrentUser.TOKEN_HEADER);
-		if (user != null) {
+		if (user != null && user.getUserid() != null) {
 			return user;
 		}
 		String token = request.getHeader(CurrentUser.TOKEN_HEADER);
@@ -105,8 +105,8 @@ public class RequestParams {
 			} catch (Exception e) {
 				user = new CurrentUser();
 			}
-			request.setAttribute(CurrentUser.TOKEN_HEADER, user);
 		}
+		request.setAttribute(CurrentUser.TOKEN_HEADER, user);
 		return user;
 	}
 	
