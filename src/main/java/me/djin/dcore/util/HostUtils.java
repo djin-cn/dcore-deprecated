@@ -90,7 +90,7 @@ public class HostUtils {
 				if(networkInterface.getName().startsWith(defaultNetworkName)) {
 					LOGGER.info("当前网卡为eth0网卡，优先使用当前IP：{}", inetAddress.getHostAddress());
 					addr = inetAddress;
-					return addr;
+					break;
 				}
 				if(addr == null || inetAddress.getHostAddress().compareTo(addr.getHostAddress()) > 0) {
 					addr = inetAddress;					
