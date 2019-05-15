@@ -82,6 +82,7 @@ public class HostUtils {
 					continue;
 				}
 				if(networkInterface.getName().startsWith(defaultNetworkName)) {
+					LOGGER.info("当前网卡为eth0网卡，优先使用当前IP：{}", inetAddress.getHostAddress());
 					addr = inetAddress;
 					break;
 				}
