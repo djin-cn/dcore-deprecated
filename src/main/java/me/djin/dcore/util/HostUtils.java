@@ -56,6 +56,12 @@ public class HostUtils {
 		}
 		while (networkList.hasMoreElements()) {
 			NetworkInterface networkInterface = networkList.nextElement();
+			try {
+				if(networkInterface.isLoopback() || !networkInterface.isUp()) {
+					continue;
+				}
+			} catch (SocketException e) {
+			}
 			Enumeration<InetAddress> addressList = networkInterface.getInetAddresses();
 			while (addressList.hasMoreElements()) {
 				InetAddress inetAddress = addressList.nextElement();
@@ -84,7 +90,7 @@ public class HostUtils {
 				if(networkInterface.getName().startsWith(defaultNetworkName)) {
 					LOGGER.info("当前网卡为eth0网卡，优先使用当前IP：{}", inetAddress.getHostAddress());
 					addr = inetAddress;
-					break;
+					return addr;
 				}
 				if(addr == null || inetAddress.getHostAddress().compareTo(addr.getHostAddress()) > 0) {
 					addr = inetAddress;					
