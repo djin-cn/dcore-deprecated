@@ -19,14 +19,21 @@ public class HostUtils {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HostUtils.class);
 	
 	/**
-	 * 获取局域网IP，如果局域网IP获取不到将采用InetAddress.getLocalHost()获取的IP
+	 * 获取局域网IP.
 	 * 
 	 * 局域网网段一般为192.168.*、172.16.*-172.31.*、10.*
 	 * 
-	 * 优先192.168网段，其次172网段，最后10网段
+	 * 按以下方式顺序获取IP地址
+	 * 
+	 * 1：通过InetAddress.getLocalHost()获取IP，必须满足!isLoopbackAddress() && isSiteLocalAddress()
+	 * 
+	 * 2：获取eth0网卡IP地址
+	 * 
+	 * 3：优先192.168网段，其次172网段，最后10网段
 	 * @return
 	 */
 	public static InetAddress getLanInetAddress() {
+		String defaultNetworkName = "eth0";
 		InetAddress addr = null;
 		InetAddress tmpAddr = null;
 		Enumeration<NetworkInterface> networkList = null;
@@ -73,6 +80,10 @@ public class HostUtils {
 				//非siteLocal类型地址，
 				if(!inetAddress.isSiteLocalAddress()) {
 					continue;
+				}
+				if(networkInterface.getName().startsWith(defaultNetworkName)) {
+					addr = inetAddress;
+					break;
 				}
 				if(addr == null || inetAddress.getHostAddress().compareTo(addr.getHostAddress()) > 0) {
 					addr = inetAddress;					
