@@ -1,7 +1,7 @@
 /**
  * 
  */
-package package me.djin.dcore.aspect;
+package me.djin.dcore.aspect;
 
 import java.util.UUID;
 
