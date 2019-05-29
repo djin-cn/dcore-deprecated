@@ -1,13 +1,12 @@
 package me.djin.dcore.frame.model;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
 
-/**
- * @author djin
- * 当前登录用户
- */
 public class CurrentUser {
 	public static final String TOKEN_HEADER = "Authorization";
+	@JSONField(serializeUsing=ToStringSerializer.class)
 	private Long userid;
 	private String username;
 	private String name;
