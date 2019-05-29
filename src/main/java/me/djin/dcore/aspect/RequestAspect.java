@@ -72,14 +72,14 @@ public class RequestAspect {
 	}
 
 	@Around("requestLog()")
-	public void doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+	public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		System.out.println("doAround");
 		MDC.put("THREAD_ID", UUID.randomUUID().toString());
 		// 定义1秒之内完成为正常
 		int normalSpeed = 1000;
 		long requestStartTime = System.nanoTime();
 		try {
-			proceedingJoinPoint.proceed();
+			return proceedingJoinPoint.proceed();
 		} catch (Throwable e) {
 			throw e;
 		} finally {
