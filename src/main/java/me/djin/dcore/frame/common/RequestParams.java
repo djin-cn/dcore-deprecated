@@ -3,6 +3,10 @@
  */
 package me.djin.dcore.frame.common;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -97,6 +101,11 @@ public class RequestParams {
 			return user;
 		}
 		String token = request.getHeader(CurrentUser.TOKEN_HEADER);
+		try {
+			token = URLDecoder.decode(token, StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e1) {
+			token = null;
+		}
 		if (StringUtils.isBlank(token)) {
 			user = new CurrentUser();
 		} else {
