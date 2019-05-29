@@ -101,6 +101,9 @@ public class RequestParams {
 			return user;
 		}
 		String token = request.getHeader(CurrentUser.TOKEN_HEADER);
+		if(token == null) {
+			token = "";
+		}
 		try {
 			token = URLDecoder.decode(token, StandardCharsets.UTF_8.name());
 		} catch (UnsupportedEncodingException e1) {
