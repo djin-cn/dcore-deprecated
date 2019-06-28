@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Fri Jun 28 10:15:16 CST 2019
+dcore-1.0.0-RELEASE.pom>=
+dcore-1.0.0-RELEASE.jar>=
+dcore-1.0.0-RELEASE-exe.jar>=
