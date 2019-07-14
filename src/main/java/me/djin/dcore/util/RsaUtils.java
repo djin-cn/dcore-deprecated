@@ -84,11 +84,11 @@ public class RsaUtils {
 	public static byte[] encrypt(String securityKeyFile, String str) throws ClassNotFoundException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException
 	{
 		ObjectInputStream objectInputStream=new ObjectInputStream(new FileInputStream(securityKeyFile));
-		java.security.Key publicKey2= (java.security.Key)objectInputStream.readObject();
+		java.security.Key publicKey= (java.security.Key)objectInputStream.readObject();
 		objectInputStream.close();
 		//得到Cipher对象来实现对源数据的RSA加密
-		Cipher cipher=Cipher.getInstance(ALGORITHM);
-		cipher.init(Cipher.ENCRYPT_MODE, publicKey2);
+		Cipher cipher=Cipher.getInstance(publicKey.getAlgorithm());
+		cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 		
  
 		byte[] encryptedData=str.getBytes();
@@ -115,6 +115,25 @@ public class RsaUtils {
 	}
 	
 	/**
+	 * 加密
+	 * @param securityKeyFile 公钥或者私钥文件路径
+	 * @param str  待加密数据
+	 * @return        加密后的数据
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException
+	 * @throws NoSuchPaddingException
+	 * @throws InvalidKeyException
+	 * @throws IllegalBlockSizeException
+	 * @throws BadPaddingException
+	 */
+	public static String encryptToString(String securityKeyFile, String str) throws ClassNotFoundException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException
+	{
+		byte[] data=encrypt(securityKeyFile, str);
+		return Base64.getEncoder().encodeToString(data);
+	}
+	
+	/**
 	 * 解密
 	 * @param securityKeyFile 公钥或者私钥文件路径
 	 * @param encryString 加密后的数据
@@ -134,7 +153,7 @@ public class RsaUtils {
 		java.security.Key privatekey= (java.security.Key)objectInputStream.readObject();
 		objectInputStream.close();
 		
-		Cipher cipher=Cipher.getInstance(ALGORITHM);
+		Cipher cipher=Cipher.getInstance(privatekey.getAlgorithm());
 		cipher.init(Cipher.DECRYPT_MODE, privatekey);
 		
 		int inputLen = encryString.length;
@@ -157,6 +176,41 @@ public class RsaUtils {
         out.close();
 		
 	    return decryptedDatas;
+	}
+	
+	/**
+	 * 解密
+	 * @param securityKeyFile 公钥或者私钥文件路径
+	 * @param encryString 加密后的数据
+	 * @return                    解密后数据
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException
+	 * @throws NoSuchPaddingException
+	 * @throws InvalidKeyException
+	 * @throws IllegalBlockSizeException
+	 * @throws BadPaddingException
+	 */
+	public static String decryptToString(String securityKeyFile, String str) throws ClassNotFoundException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException
+	{
+		byte[] strByte = Base64.getDecoder().decode(str);
+		byte[] data=decrypt(securityKeyFile, strByte);
+		return new String(data);
+	}
+	
+	/**
+	 * 获取公钥或者私钥的字符串
+	 * @param keyFile 公钥或者私钥文件
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static String getStringKey(String keyFile) throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream objectInputStream=new ObjectInputStream(new FileInputStream(keyFile));
+		java.security.Key key= (java.security.Key)objectInputStream.readObject();
+		objectInputStream.close();
+		return Base64.getEncoder().encodeToString(key.getEncoded());
 	}
 	
 	public static void main(String[] args) throws NoSuchAlgorithmException, IOException, InvalidKeyException, ClassNotFoundException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
