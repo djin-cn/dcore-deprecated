@@ -5,7 +5,7 @@
 
 	<groupId>me.djin</groupId>
 	<artifactId>dcore</artifactId>
-	<version>1.0.1-B1</version>
+	<version>1.0.1-B2</version>
 	<packaging>jar</packaging>
 
 	<name>dcore</name>
