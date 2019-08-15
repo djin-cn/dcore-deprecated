@@ -4,6 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 
+/**
+ * 当前用户
+ * @author djin
+ *
+ */
 public class CurrentUser {
 	public static final String TOKEN_HEADER = "Authorization";
 	@JSONField(serializeUsing=ToStringSerializer.class)

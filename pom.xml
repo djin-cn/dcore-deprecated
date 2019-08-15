@@ -26,10 +26,13 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-			<optional>true</optional>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core -->
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
 		</dependency>
 		<!-- frame partial start -->
 		<dependency>
@@ -115,11 +118,8 @@
 			<version>2.3.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.code.kaptcha/kaptcha -->
-		<!-- <dependency>
-			<groupId>com.google.code.kaptcha</groupId>
-			<artifactId>kaptcha</artifactId>
-			<version>2.3</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.google.code.kaptcha</groupId> <artifactId>kaptcha</artifactId> 
+			<version>2.3</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
