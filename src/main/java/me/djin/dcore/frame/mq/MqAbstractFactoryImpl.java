@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import me.djin.dcore.core.FactoryContainer;
 import me.djin.dcore.frame.common.DcoreConfig;
 import me.djin.dcore.mq.Consumer;
 import me.djin.dcore.mq.FutureCallback;
@@ -36,6 +37,10 @@ public class MqAbstractFactoryImpl implements MqAbstractFactory {
 	private DcoreConfig cfg;
 	@Autowired
 	private KafkaTemplate<Integer, String> kafkaTemplate;
+	
+	public MqAbstractFactoryImpl() {
+		FactoryContainer.addBeanFactory(MqAbstractFactory.class, this);
+	}
 
 	/**
 	 * 通过配置文件的dcore.mq指定MQ提供者。
