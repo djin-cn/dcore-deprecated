@@ -38,4 +38,11 @@ public class TestControllerTest extends TestBase {
     	System.out.println(String.format("%s：%s", this.getClass().getName(), response));
     	Assert.assertThat(response.getStatus(), is("1"));
     }
+    @Test
+    public void kafka() {
+    	String url = this.base.toString() + "/kafka";
+    	Response<Model> response = SpringBootTestUtils.post(this.restTemplate, url, null, Model.class);
+    	System.out.println(String.format("%s：%s", this.getClass().getName(), response));
+        Assert.assertThat(response.getStatus(), is("1"));
+    }
 }
