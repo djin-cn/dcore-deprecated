@@ -108,6 +108,11 @@ public class RequestParams {
 			token = URLDecoder.decode(token, StandardCharsets.UTF_8.name());
 		} catch (UnsupportedEncodingException e1) {
 			token = null;
+		} catch (Exception e) {
+			if (token == null) {
+				token = "";
+			}
+			throw new RuntimeException("解码当前用户错误, 用户令牌: " + token, e);
 		}
 		if (StringUtils.isBlank(token)) {
 			user = new CurrentUser();
