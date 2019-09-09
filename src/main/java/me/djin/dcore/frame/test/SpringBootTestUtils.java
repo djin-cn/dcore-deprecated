@@ -44,16 +44,16 @@ public class SpringBootTestUtils {
 	 * @param template
 	 * @param url 接口地址
 	 * @param params 接口参数
-	 * @param clazz 返回类型
+	 * @param returnClazz 返回类型
 	 * @return
 	 */
-	public static <T> Response<T> post(TestRestTemplate template, String url, Object params, Class<T> clazz) {
+	public static <T> Response<T> post(TestRestTemplate template, String url, Object params, Class<T> returnClazz) {
 		ResponseEntity<JSONObject> response = template.postForEntity(url, params, JSONObject.class);
 		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK));
 		JSONObject json = response.getBody();
 		T data = null;
 		try {
-			data = json.getObject("data", clazz);
+			data = json.getObject("data", returnClazz);
 		}catch (Exception e) {
 			data = null;
 		}
