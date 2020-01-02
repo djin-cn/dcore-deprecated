@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
@@ -35,8 +34,10 @@ public class MqAbstractFactoryImpl implements MqAbstractFactory {
 	private static final String DEFAULT_THREAD_MQ = "demo";
 	@Autowired
 	private DcoreConfig cfg;
-	@Autowired
-	private KafkaTemplate<Integer, String> kafkaTemplate;
+	@Autowired(required=false)
+	private KafkaAutoConfiguration kafkaConfig;
+//	@Autowired(required=false)
+//	private KafkaTemplate<Integer, String> kafkaTemplate;
 	
 	public MqAbstractFactoryImpl() {
 		FactoryContainer.addBeanFactory(MqAbstractFactory.class, this);
@@ -62,7 +63,7 @@ public class MqAbstractFactoryImpl implements MqAbstractFactory {
 			producer = new AbstractKafkaProducer() {
 				@Override
 				public void send(String topic, String message, FutureCallback callback) {
-					ListenableFuture<SendResult<Integer, String>> future = kafkaTemplate.send(topic, message);
+					ListenableFuture<SendResult<Integer, String>> future = kafkaConfig.getKafkaTemplate().send(topic, message);
 					future.addCallback(new ListenableFutureCallback<SendResult<Integer, String>>() {
 						@Override
 						public void onSuccess(SendResult<Integer, String> result) {

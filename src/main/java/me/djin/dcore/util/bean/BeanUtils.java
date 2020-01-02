@@ -50,6 +50,9 @@ public class BeanUtils {
 			}
 			// String转数字、字节、布尔
 			if (value instanceof String) {
+				if("".equals(value)) {
+					value = "0";
+				}
 				if (target == Long.class || target == Long.TYPE) {
 					return Long.valueOf(value.toString());
 				}

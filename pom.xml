@@ -5,7 +5,7 @@
 
 	<groupId>me.djin</groupId>
 	<artifactId>dcore</artifactId>
-	<version>1.0.1-B3</version>
+	<version>1.0.1-B4</version>
 	<packaging>jar</packaging>
 
 	<name>dcore</name>
@@ -33,7 +33,6 @@
             <groupId>org.databene</groupId>
             <artifactId>contiperf</artifactId>
             <version>2.3.4</version>
-            <scope>test</scope>
         </dependency>
 		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core -->
 		<dependency>
