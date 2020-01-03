@@ -11,7 +11,7 @@
     </repository>
 </repositories>
 ```
-3. Maven默认的setting.xml内不要有mirror.id=*的配置, 否则上一步可能失效, 以下示例为阿里云maven配置
+3. Maven默认的setting.xml内不要有*的配置, 否则上一步可能失效, 以下示例为阿里云maven配置
 ```xml
 	<mirrors>
 		<mirror>
