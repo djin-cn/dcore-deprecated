@@ -28,23 +28,23 @@
 1. 引入dcore框架
 2. 添加默认的配置文件application-default.properties
 3. 常用类()
-  　1. CurdBaseDao: 基础数据访问接口，提供数据库基础访问操作, 但不包含批量添加、删除操作
-  　2. CurdDao: 继承自CurdBaseDao接口, 包含批量添加、删除操作. 和CurdBaseDao一样,是所有DAO的基类
-  　3. CurdService: 础服务接口，提供常规增删改查服务, 所有Service的基类
-  　4. DcoreConstant: 框架全局常量类, 包含排序方式等常量
-  　5. GlobalExceptionHandler: 全局异常类, 主要目的防止系统对外抛出莫名异常
-  　6. RequestParams: 全局请求参数类, 可获取pn/pc/当前登录用户/客户端IP等去全局请求参数
-  　7. ValidatorUtil: 验证工具类, 主要用于手动调用参数校验的情况
-  　8. IdUtil: ID生成器, 可通过IdUtil.nextId()生成ID
-  　9. PgsqlJsonTypeHandler: postgresql数据库json类型字段处理, 需要在实体类对应的字段上添加@ColumnType(typeHandler=PgsqlJsonTypeHandler.class)
+  　1. CurdBaseDao: 基础数据访问接口，提供数据库基础访问操作, 但不包含批量添加、删除操作  
+  　2. CurdDao: 继承自CurdBaseDao接口, 包含批量添加、删除操作. 和CurdBaseDao一样,是所有DAO的基类  
+  　3. CurdService: 础服务接口，提供常规增删改查服务, 所有Service的基类  
+  　4. DcoreConstant: 框架全局常量类, 包含排序方式等常量  
+  　5. GlobalExceptionHandler: 全局异常类, 主要目的防止系统对外抛出莫名异常  
+  　6. RequestParams: 全局请求参数类, 可获取pn/pc/当前登录用户/客户端IP等去全局请求参数  
+  　7. ValidatorUtil: 验证工具类, 主要用于手动调用参数校验的情况  
+  　8. IdUtil: ID生成器, 可通过IdUtil.nextId()生成ID  
+  　9. PgsqlJsonTypeHandler: postgresql数据库json类型字段处理, 需要在实体类对应的字段上添加@ColumnType(typeHandler=PgsqlJsonTypeHandler.class)  
 4. 常用MODEL
-  　1. CurrentUser: 当前用户MODEL, 前端需要设置Authorization请求头, 后端可通过RequestParams.getCurrentUser()获取
-  　2. IdListModel: ID列表MODEL, 主要用于API接口参数接收
-  　3. IdModel: ID MODEL, 主要用于API接口参数接收
-  　4. KeywordQueryModel: 关键词MODEL, 主要用于API接口参数接收
-  　5. PageModel: 分页MODEL, 主要用于封装分页对象
-  　6. QueryModel: 通用查询MODEL, 包含了排序属性, 建议所有数据查询VO都继承自此MODEL
-  　7. Response: 通用响应模型, 主要用于API接口返回
+  　1. CurrentUser: 当前用户MODEL, 前端需要设置Authorization请求头, 后端可通过RequestParams.getCurrentUser()获取  
+  　2. IdListModel: ID列表MODEL, 主要用于API接口参数接收  
+  　3. IdModel: ID MODEL, 主要用于API接口参数接收  
+  　4. KeywordQueryModel: 关键词MODEL, 主要用于API接口参数接收  
+  　5. PageModel: 分页MODEL, 主要用于封装分页对象  
+  　6. QueryModel: 通用查询MODEL, 包含了排序属性, 建议所有数据查询VO都继承自此MODEL  
+  　7. Response: 通用响应模型, 主要用于API接口返回  
 5. 自定义验证注解
   　1. @Idcard: 验证身份证号码, 支持15位和18位身份证号码校验
 
