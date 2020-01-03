@@ -76,7 +76,8 @@ public class Snowflake implements IdGenerator {
 			throw new RuntimeException("IdGenerator can not get ip", e);
 		}
 		byte[] ip = addr.getAddress();
-		if(ip.length != 4) {
+		int ipLen = 4;
+		if(ip.length != ipLen) {
 			throw new RuntimeException("IdGenerator can not support this ip:"+addr.getHostAddress());
 		}
 		LOGGER.info("IdGenerator's IP is: " + addr.getHostAddress());

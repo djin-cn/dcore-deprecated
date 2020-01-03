@@ -7,12 +7,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import me.djin.dcore.core.FactoryContainer;
 import me.djin.dcore.frame.common.DcoreConfig;
 import me.djin.dcore.mq.Consumer;
 import me.djin.dcore.mq.FutureCallback;
@@ -34,8 +34,14 @@ public class MqAbstractFactoryImpl implements MqAbstractFactory {
 	private static final String DEFAULT_THREAD_MQ = "demo";
 	@Autowired
 	private DcoreConfig cfg;
-	@Autowired
-	private KafkaTemplate<Integer, String> kafkaTemplate;
+	@Autowired(required=false)
+	private KafkaAutoConfiguration kafkaConfig;
+//	@Autowired(required=false)
+//	private KafkaTemplate<Integer, String> kafkaTemplate;
+	
+	public MqAbstractFactoryImpl() {
+		FactoryContainer.addBeanFactory(MqAbstractFactory.class, this);
+	}
 
 	/**
 	 * 通过配置文件的dcore.mq指定MQ提供者。
@@ -57,7 +63,7 @@ public class MqAbstractFactoryImpl implements MqAbstractFactory {
 			producer = new AbstractKafkaProducer() {
 				@Override
 				public void send(String topic, String message, FutureCallback callback) {
-					ListenableFuture<SendResult<Integer, String>> future = kafkaTemplate.send(topic, message);
+					ListenableFuture<SendResult<Integer, String>> future = kafkaConfig.getKafkaTemplate().send(topic, message);
 					future.addCallback(new ListenableFutureCallback<SendResult<Integer, String>>() {
 						@Override
 						public void onSuccess(SendResult<Integer, String> result) {
