@@ -20,6 +20,13 @@ public class Response<T> implements Serializable {
 	private String statusText = null;
 	
 	/**
+	 * 默认正确输出
+	 */
+	public Response() {
+		this("1");
+	}
+	
+	/**
 	 * 统一输出格式
 	 * @param status 状态码，错误码
 	 */
