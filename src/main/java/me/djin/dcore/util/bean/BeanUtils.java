@@ -50,29 +50,30 @@ public class BeanUtils {
 			}
 			// String转数字、字节、布尔
 			if (value instanceof String) {
-				if("".equals(value)) {
-					value = "0";
+				String numberValue = value.toString();
+				if("".equals(numberValue)) {
+					numberValue = "0";
 				}
 				if (target == Long.class || target == Long.TYPE) {
-					return Long.valueOf(value.toString());
+					return Long.valueOf(numberValue.toString());
 				}
 				if (target == Integer.class || target == Integer.TYPE) {
-					return Integer.valueOf(value.toString());
+					return Integer.valueOf(numberValue.toString());
 				}
 				if (target == Short.class || target == Short.TYPE) {
-					return Short.valueOf(value.toString());
+					return Short.valueOf(numberValue.toString());
 				}
 				if (target == Float.class || target == Float.TYPE) {
-					return Float.valueOf(value.toString());
+					return Float.valueOf(numberValue.toString());
 				}
 				if (target == Double.class || target == Double.TYPE) {
-					return Double.valueOf(value.toString());
+					return Double.valueOf(numberValue.toString());
 				}
 				if (target == Byte.class || target == Byte.TYPE) {
-					return Byte.valueOf(value.toString());
+					return Byte.valueOf(numberValue.toString());
 				}
 				if (target == Boolean.class || target == Boolean.TYPE) {
-					return Boolean.valueOf(value.toString());
+					return Boolean.valueOf(numberValue.toString());
 				}
 			}
 			return value;
